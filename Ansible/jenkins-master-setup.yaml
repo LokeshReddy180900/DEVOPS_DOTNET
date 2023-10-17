@@ -1,0 +1,66 @@
+---
+- hosts: jenkins
+  become: true
+  tasks:
+  - name: add jenkins key 
+    apt_key: 
+      url:  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+      state: present 
+
+  - name: add jenkins repo 
+    apt_repository: 
+      repo: 'deb https://pkg.jenkins.io/debian-stable binary/'
+      state: present 
+
+  - name: install java 
+    apt: 
+      name: openjdk-11-jre
+      state: present
+
+  - name: install jenkins 
+    apt: 
+      name: jenkins 
+      state: present 
+
+  - name: start jenkins service 
+    service: 
+      name: jenkins 
+      state: started 
+
+  - name: enable jenkins to start at boot time 
+    service: 
+      name: jenkins 
+      enabled: yes
+
+  - name: download maven packages 
+    get_url:
+      url: https://dlcdn.apache.org/maven/maven-3/3.9.5/binaries/apache-maven-3.9.5-bin.tar.gz
+      dest: /opt
+
+  - name: extract maven packages 
+    unarchive:
+      src: /opt/apache-maven-3.9.5-bin.tar.gz
+      dest: /opt 
+      remote_src: yes
+
+  - name: install docker 
+    apt: 
+      name: docker.io 
+      state: present
+
+  - name: start docker services 
+    service: 
+      name: docker 
+      state: started 
+  
+  - name: give 777 permissions on /var/run/docker.sock
+    file: 
+      path: /var/run/docker.sock
+      state: file 
+      mode: 0777
+
+  - name: start docker on boot time 
+    service: 
+      name: docker 
+      enabled: yes 
+    
