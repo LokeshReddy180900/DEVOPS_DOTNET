@@ -9,7 +9,7 @@ pipeline {
         stage("Building"){
             steps {
                 echo "Building SourceCode"
-                sh 'dotnetBuild %sln%'
+                sh 'dotnet run %sln%'
                 echo "Built Successfully"
             }
         }
