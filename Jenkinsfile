@@ -5,7 +5,7 @@ pipeline {
         stage("Building"){
             steps {
                 echo "Building SourceCode"
-                sh 'dotnetBuild MyWebApp'
+                bat 'dotnetBuild MyWebApp'
                 echo "Built Successfully"
             }
         }
