@@ -2,11 +2,11 @@ pipeline {
     agent any
 
     stages {
-        stage("fetching Source Code"){
+        stage("Building"){
             steps {
                 echo "Building SourceCode"
                 sh 'dotnet run --project=MyWebApp'
-                echo"Built Successfully"
+                echo "Built Successfully"
             }
         }
     }
