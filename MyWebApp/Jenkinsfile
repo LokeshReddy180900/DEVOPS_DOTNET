@@ -2,6 +2,7 @@ pipeline {
     agent any
 
     environment {
+        dotnet = '/home/ubuntu/.dotnet/dotnet'
         sln = '/home/ubuntu/DEVOPS_DOTNET/MyWebApp/Program.cs'
     }
 
