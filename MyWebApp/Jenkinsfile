@@ -7,10 +7,10 @@ pipeline {
     }
 
     stages {
-        stage("Building"){
+        stage("Building") {
             steps {
                 echo "Building SourceCode"
-                sh '/home/ubuntu/.dotnet/dotnetBuild ${sln}'
+                sh "${dotnet} build ${sln}"
                 echo "Built Successfully"
             }
         }
