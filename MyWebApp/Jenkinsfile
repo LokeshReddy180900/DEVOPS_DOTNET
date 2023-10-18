@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        dotnet = "/home/ubuntu/.dotnet"
+        dotnet = "/home/ubuntu/.dotnet/dotnet"
         sln = '/home/ubuntu/DEVOPS_DOTNET/MyWebApp'
     }
 
@@ -10,7 +10,7 @@ pipeline {
         stage("Building"){
             steps {
                 echo "Building SourceCode"
-                sh '${dotnet} dotnet run ${sln} '
+                sh '${dotnet}Build ${sln} '
                 echo "Built Successfully"
             }
         }
