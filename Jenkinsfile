@@ -9,7 +9,7 @@ pipeline {
         stage("Building") {
             steps {
                 echo "Building SourceCode"
-                sh 'dotnet build --project /var/lib/jenkins/workspace/Dotnet_project/MyWebApp/MyWebApp.csproj'
+                sh 'dotnet build --project "/var/lib/jenkins/workspace/Dotnet_project/MyWebApp/MyWebApp.csproj"'
                 echo "Built Successfully"
             }
         }
