@@ -4,10 +4,10 @@ pipeline {
     stages {
         stage("Build") {
             steps {
-                dir("/var/lib/jenkins/workspace/Dotnet_project/MyWebApp") {
+                dir("/var/lib/jenkins/workspace/Dotnet_project/MyWebApp/MyWebApp.csproj") {
                     script {
                         // Build the .NET project
-                        sh 'dotnet build --project "MyWebApp.csproj"'
+                        sh 'dotnet build'
                     }
                 }
             }
@@ -15,10 +15,10 @@ pipeline {
 
         stage("Run") {
             steps {
-                dir("/var/lib/jenkins/workspace/Dotnet_project/MyWebApp") {
+                dir("/var/lib/jenkins/workspace/Dotnet_project/MyWebApp/MyWebApp.csproj") {
                     script {
                         // Run the .NET application
-                        sh 'dotnet run --project "MyWebApp.csproj"'
+                        sh 'dotnet run'
                     }
                 }
             }
