@@ -3,14 +3,14 @@ pipeline {
 
     environment {
         dotnet = "/home/ubuntu/.dotnet/dotnet"
-        sln = '/home/ubuntu/DEVOPS_DOTNET/MyWebApp'
+        sln = "/home/ubuntu/DEVOPS_DOTNET/MyWebApp"
     }
 
     stages {
         stage("Building"){
             steps {
                 echo "Building SourceCode"
-                sh '${dotnet}Build ${sln} '
+                sh '/home/ubuntu/.dotnet/dotnetBuild ${sln}'
                 echo "Built Successfully"
             }
         }
