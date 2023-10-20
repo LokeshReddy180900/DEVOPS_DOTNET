@@ -24,7 +24,7 @@ pipeline {
             }
         }
 
-        stage("Run") {
+      /*  stage("Run") {
             steps {
                 dir("/var/lib/jenkins/workspace/Dotnet_project/MyWebApp") {
                     script {
@@ -33,6 +33,6 @@ pipeline {
                     }
                 }
             }
-        }
+        } */
     }
 }
