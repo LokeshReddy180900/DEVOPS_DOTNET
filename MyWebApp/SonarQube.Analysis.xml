@@ -2,7 +2,7 @@
 <AnalysisInput>
   <Server>
     <Id>sonarserver</Id>
-    <Url>http://3.87.135.114:9000</Url>
+    <Url>http://174.129.190.99:9000</Url>
   </Server>
   <ProjectKey>dotnet_project</ProjectKey>
   <ProjectName>dotnet_project</ProjectName>
