@@ -29,9 +29,9 @@ pipeline {
                 withSonarQubeEnv('sonarserver') {
                     dir("/var/lib/jenkins/workspace/Dotnet_project/MyWebApp") {
                         script {
-                            sh 'dotnet sonarscanner begin /key:"Dotnet_project" /d:sonar.host.url="http://174.129.190.99:9000" /d:sonar.login="sonar-jenkins-token"'
+                            sh 'dotnet /opt/sonarqube/bin begin /k:"Dotnet_project" /d:sonar.token="sonar-jenkins-token"'
                             sh 'dotnet build'  
-                            sh 'dotnet sonarscanner end'
+                            sh 'dotnet /opt/sonarqube/bin end /d:sonar.token="sonar-jenkins-token"'
 
                         
                         
