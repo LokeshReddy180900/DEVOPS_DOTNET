@@ -24,6 +24,20 @@ pipeline {
             }
         }
 
+        stage("Build Docker Images and run docker containers") {
+            steps {
+                dir("/var/lib/jenkins/workspace/Dotnet_project/MyWebApp") {
+                    script {
+                        // Build the .NET project
+                        sh 'docker buid -t ambati .'
+                        sh 'docker run -d -p 8081:80 ambati'
+                    }
+                }
+            }
+        }
+
+
+
         /*stage("SonarQube Analysis") {
             steps {
                 withSonarQubeEnv('sonarserver') {
