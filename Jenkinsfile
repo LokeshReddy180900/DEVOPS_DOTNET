@@ -24,19 +24,19 @@ pipeline {
             }
         }
 
-        stage("Removing Container and Older Images") {
+       /* stage("Removing Container and Older Images") {
             steps {
                 dir("/var/lib/jenkins/workspace/Dotnet_project/MyWebApp") {
                     script {
-                      //  sh 'docker stop 68c087212ff1 '
-                      //    sh 'docker rm 68c087212ff1'
+                       sh 'docker stop 2e545fdc69ef'
+                        sh 'docker rm 2e545fdc69ef'
                         sh 'docker rmi ambati'
                        
                     }
                 }
 
             }
-        }
+        } */
 
         stage("Build Docker Images and run docker containers") {
             steps {
