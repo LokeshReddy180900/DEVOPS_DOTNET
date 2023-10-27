@@ -24,6 +24,20 @@ pipeline {
             }
         }
 
+        stage("Removing Container and Older Images") {
+            steps {
+                dir("/var/lib/jenkins/workspace/Dotnet_project/MyWebApp") {
+                    script {
+                        sh 'docker stop d2e91f3effe1 3c097faeca24'
+                        sh 'docker rm d2e91f3effe1 3c097faeca24'
+                        sh 'docker rmi ambati'
+                       
+                    }
+                }
+
+            }
+        }
+
         stage("Build Docker Images and run docker containers") {
             steps {
                 dir("/var/lib/jenkins/workspace/Dotnet_project/MyWebApp") {
@@ -35,6 +49,8 @@ pipeline {
                 }
             }
         }
+
+
 
         stage('Push Docker Image') {
             steps {
