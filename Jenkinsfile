@@ -43,8 +43,8 @@ pipeline {
                 dir("/var/lib/jenkins/workspace/Dotnet_project/MyWebApp") {
                     script {
                         // Build the .NET project
-                        sh 'docker build -t ambatilokesh .'
-                        sh 'docker run -d --name lokesh -p 8081:80 ambatilokesh'
+                        sh 'docker build -t ambatilokesh/ambati .'
+                        sh 'docker run -d --name lokesh -p 8081:80 ambatilokesh/ambati'
                     }
                 }
             }
