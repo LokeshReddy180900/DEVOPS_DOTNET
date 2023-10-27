@@ -52,7 +52,7 @@ pipeline {
 
 
 
-        stage('Push Docker Image') {
+        /*stage('Push Docker Image') {
             steps {
                 dir("/var/lib/jenkins/workspace/Dotnet_project/MyWebApp") {
                 // Push the Docker image to a registry
@@ -63,7 +63,7 @@ pipeline {
                 }
             }
         }
-        
+        */
 
 
 
