@@ -18,13 +18,13 @@ pipeline {
                 dir("/var/lib/jenkins/workspace/Dotnet_project/MyWebApp") {
                     script {
                         // Build the .NET project
-                        sh 'dotnet build'
+                        sh 'dotnet publish -c Release -o out'
                     }
                 }
             }
         }
 
-        stage("SonarQube Analysis") {
+        /*stage("SonarQube Analysis") {
             steps {
                 withSonarQubeEnv('sonarserver') {
                     dir("/var/lib/jenkins/workspace/Dotnet_project/MyWebApp") {
@@ -40,7 +40,7 @@ pipeline {
                     }
                 }
             }
-        }
+        } */
 
         /*stage("Run") {
             steps {
