@@ -28,8 +28,8 @@ pipeline {
             steps {
                 dir("/var/lib/jenkins/workspace/Dotnet_project/MyWebApp") {
                     script {
-                        sh 'docker stop d2e91f3effe1 3c097faeca24'
-                        sh 'docker rm d2e91f3effe1 3c097faeca24'
+                        sh 'docker stop 68c087212ff1 '
+                        sh 'docker rm 68c087212ff1'
                         sh 'docker rmi ambati'
                        
                     }
@@ -44,7 +44,7 @@ pipeline {
                     script {
                         // Build the .NET project
                         sh 'docker build -t ambati .'
-                        sh 'docker run -d -p 8081:80 ambati'
+                        sh 'docker run -d -name lokesh -p 8081:80 ambati'
                     }
                 }
             }
