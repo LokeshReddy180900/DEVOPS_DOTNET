@@ -36,6 +36,19 @@ pipeline {
             }
         }
 
+        stage('Push Docker Image') {
+            steps {
+                dir("/var/lib/jenkins/workspace/Dotnet_project/MyWebApp") {
+                // Push the Docker image to a registry
+                script {
+                    docker.withRegistry('https://hub.docker.com/repositories/ambatilokesh', 'dockercreds') {
+                        docker.image("ambati").push()
+                    }
+                }
+            }
+        }
+        }
+
 
 
         /*stage("SonarQube Analysis") {
