@@ -2,10 +2,10 @@ provider "aws" {
   region = "us-east-1"
 }
 
-resource "aws_instance" "infra-server" {
+/*resource "aws_instance" "infra-server" {
   ami           = "ami-053b0d53c279acc90"
   instance_type = "t2.micro"
-  key_name      = "dpp" 
+  key_name      = "dpp"
   #security_groups        = ["infra-sg"]
   vpc_security_group_ids = [aws_security_group.infra-sg.id]
   subnet_id              = aws_subnet.infra-public-subnet-01.id
@@ -15,7 +15,7 @@ resource "aws_instance" "infra-server" {
   }
 
 
-}
+}*/
 
 resource "aws_security_group" "infra-sg" {
   name        = "infra-sg"
@@ -110,3 +110,16 @@ resource "aws_route_table_association" "infra-rta-public-subnet-02" {
   route_table_id = aws_route_table.infra-public-rt.id
 
 }
+
+module "sgs" {
+  source = "../sg_eks"
+  vpc_id = aws_vpc.infra-vpc.id
+}
+
+module "eks" {
+  source     = "../eks"
+  vpc_id     = aws_vpc.infra-vpc.id
+  subnet_ids = [aws_subnet.infra-public-subnet-01.id, aws_subnet.infra-public-subnet-02.id]
+  sg_ids     = module.sgs.security_group_public
+}
+
