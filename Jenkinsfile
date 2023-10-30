@@ -35,7 +35,7 @@ pipeline {
                     script {
                        sh 'docker stop lokesh'
                         sh 'docker rm lokesh'
-                        sh 'docker rmi ambati'
+                        sh 'docker rmi ambatilokesh/ambati'
                        
                     }
                 }
