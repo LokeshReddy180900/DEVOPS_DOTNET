@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_HUB_CREDENTIALS = credentials('dockercreds')
-        DOCKER_IMAGE_NAME = 'ambatilokesh/ambatilokesh/ambati:latest'
+        DOCKER_IMAGE_NAME = 'ambatilokesh/ambati:latest'
     }
 
     stages {
@@ -48,8 +48,8 @@ pipeline {
                 dir("/var/lib/jenkins/workspace/Dotnet_project/MyWebApp") {
                     script {
                         // Build the .NET project
-                        sh 'docker build -t ambatilokesh/ambati .'
-                        sh 'docker run -d --name lokesh -p 8081:80 ambatilokesh/ambati'
+                        sh 'docker build -t ambati .'
+                        sh 'docker run -d --name lokesh -p 8081:80 ambati'
                     }
                 }
             }
