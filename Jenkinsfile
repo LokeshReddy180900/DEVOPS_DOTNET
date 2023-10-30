@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    environment {
+        DOCKER_HUB_CREDENTIALS = credentials('dockercreds')
+        DOCKER_IMAGE_NAME = 'ambatilokesh/ambatilokesh/ambati:latest'
+    }
+
     stages {
         stage("Restore") {
             steps {
@@ -46,6 +51,21 @@ pipeline {
                         sh 'docker build -t ambatilokesh/ambati .'
                         sh 'docker run -d --name lokesh -p 8081:80 ambatilokesh/ambati'
                     }
+                }
+            }
+        }
+
+        stage('Login and Push Docker Image') {
+            steps {
+                script {
+                    // Build the Docker image
+                  //  sh 'docker build -t $DOCKER_IMAGE_NAME .'
+
+                    // Authenticate to Docker Hub
+                    sh "docker login -u $DOCKER_HUB_CREDENTIALS_USR -p $DOCKER_HUB_CREDENTIALS_PSW"
+
+                    // Push the Docker image to Docker Hub
+                    sh "docker push $DOCKER_IMAGE_NAME"
                 }
             }
         }
