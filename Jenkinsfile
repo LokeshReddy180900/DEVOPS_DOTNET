@@ -71,7 +71,7 @@ pipeline {
             }
         }
 
-        stage('Kubernetes Deployment') {
+      /*  stage('Kubernetes Deployment') {
             steps {
                 dir("/var/lib/jenkins/workspace/Dotnet_project/Kubernetes") {
                     script {
@@ -82,7 +82,7 @@ pipeline {
                 }
 
             }
-        }
+        } */
 
         stage('Deploy to Kubernetes') {
             steps {
