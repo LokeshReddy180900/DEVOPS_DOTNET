@@ -4,6 +4,7 @@ pipeline {
     environment {
         DOCKER_HUB_CREDENTIALS = credentials('dockercreds')
         DOCKER_IMAGE_NAME = 'ambatilokesh/ambati:latest'
+        KUBECONFIG = credentials('Kubecreds')
     }
 
     stages {
@@ -81,6 +82,24 @@ pipeline {
                 }
 
             }
+        }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                dir("/var/lib/jenkins/workspace/Dotnet_project/Kubernetes") {
+
+                script {
+                    // Set the KUBECONFIG environment variable
+                    withCredentials([kubeconfigFile(credentialsId: 'Kubecreds', variable: 'KUBECONFIG')]) {
+                        sh "kubectl config use-context  arn:aws:eks:us-east-1:989511916894:cluster/valaxy-eks-01"
+                    }
+
+                    // Apply your Kubernetes deployment and service YAML files
+                    sh "kubectl apply -f Deployment.yaml"
+                    sh "kubectl apply -f service.yaml"
+                }
+            }
+        }
         }
 
 
