@@ -91,7 +91,7 @@ pipeline {
                 script {
                     // Set the KUBECONFIG environment variable
                     withCredentials([kubeconfigFile(credentialsId: 'Kubecreds', variable: 'KUBECONFIG')]) {
-                        sh "kubectl config use-context  arn:aws:eks:us-east-1:989511916894:cluster/valaxy-eks-01"
+                        sh "kubectl config use-context valaxy-eks-01"
                     }
 
                     // Apply your Kubernetes deployment and service YAML files
