@@ -35,7 +35,7 @@ pipeline {
                     script {
                        sh 'docker stop lokesh'
                         sh 'docker rm lokesh'
-                        sh 'docker rmi ambatilokesh/ambati'
+                        sh 'docker rmi ambati'
                        
                     }
                 }
@@ -48,8 +48,8 @@ pipeline {
                 dir("/var/lib/jenkins/workspace/Dotnet_project/MyWebApp") {
                     script {
                         // Build the .NET project
-                        sh 'docker build -t ambati .'
-                        sh 'docker run -d --name lokesh -p 8081:80 ambati'
+                        sh 'docker build -t ambatilokesh/ambati .'
+                        sh 'docker run -d --name lokesh -p 8081:80 ambatilokesh/ambati'
                     }
                 }
             }
