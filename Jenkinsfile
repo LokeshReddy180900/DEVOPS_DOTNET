@@ -70,6 +70,19 @@ pipeline {
             }
         }
 
+        stage('Kubernetes Deployment') {
+            steps {
+                dir("/var/lib/jenkins/workspace/Dotnet_project/Kubernetes") {
+                    script {
+                        sh 'kubectl create -f Deployment.yaml'
+                        sh 'kubectl create -f service.yaml'
+
+                    }
+                }
+
+            }
+        }
+
 
 
         /*stage('Push Docker Image') {
